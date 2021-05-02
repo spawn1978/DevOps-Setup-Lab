@@ -6,6 +6,7 @@
 . Portainer CE
 . GitLab CE
 . Jenkins
+. Sonqube
 
 ````
 
