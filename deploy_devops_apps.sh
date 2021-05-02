@@ -57,9 +57,9 @@ firewall-cmd --reload
 
 ## Selenium
 docker run --detach \
-  --publish 4444:4444 
-  --volume /dev/shm:/dev/shm   
-  --name selenium
+  --publish 4444:4444 \
+  --volume /dev/shm:/dev/shm \
+  --name selenium \
 selenium/standalone-chrome:3.141.59-yttrium
 firewall-cmd --add-port 4444/tcp --permanent
 firewall-cmd --reload
