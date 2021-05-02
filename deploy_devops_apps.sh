@@ -9,6 +9,7 @@ yum-config-manager \
 yum install docker-ce docker-ce-cli containerd.io
 systemctl enable docker
 systemctl start docker
+
 ## Portainer CE
 docker volume create portainer-data
 docker run --detach \
@@ -20,6 +21,7 @@ docker run --detach \
   portainer/portainer-ce
 firewall-cmd --add-port 9000/tcp --permanent
 firewall-cmd --reload
+
 ## Gitlab CE
 export GITLAB_HOME=/srv
 docker run --detach \
@@ -33,6 +35,7 @@ docker run --detach \
 firewall-cmd --add-port 80/tcp --permanent
 firewall-cmd --add-port 443/tcp --permanent
 firewall-cmd --reload
+
 ## Jenkins
 docker run --detach \
   --publish 8080:8080 --publish 50000:50000 \
@@ -44,9 +47,7 @@ firewall-cmd --add-port 8080/tcp --permanent
 firewall-cmd --reload
 
 ## Sonarqube
-
-docker container run -d -p 9000:9000 --name sonarserver SonarQube:8.2-community
-docker container run --detach \
+docker run --detach \
   --publish 9000:9000 \
   --name sonarqube \
   --restart always \
