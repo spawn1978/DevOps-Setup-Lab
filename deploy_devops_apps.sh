@@ -2,17 +2,12 @@
 # Script for installing apps for DevOps lab
 
 ## Docker CE
-sudo apt-get install \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    gnupg \
-    lsb-release
+sudo apt-get install apt-transport-https ca-certificates curl gnupg lsb-release -y
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 sudo echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt-get update
-sudo apt-get install docker-ce docker-ce-cli containerd.io
+sudo apt-get update -y
+sudo apt-get install docker-ce docker-ce-cli containerd.io -y
 sudo systemctl enable docker
 sudo systemctl start docker
 
@@ -42,7 +37,6 @@ sudo ufw allow 80/tcp
 sudo ufw allow 443/tcp
 sudo systemctl restart ufw
 
-
 ## Jenkins
 sudo docker run --detach \
   --publish 8080:8080 --publish 50000:50000 \
@@ -53,7 +47,6 @@ sudo docker run --detach \
 sudo ufw allow 8080/tcp
 sudo systemctl restart ufw
 
-
 ## Sonarqube
 sudo docker run --detach \
   --publish 7000:7000 \
@@ -63,7 +56,6 @@ sudo docker run --detach \
 sudo ufw allow 7000/tcp
 sudo systemctl restart ufw
 
-
 ## Selenium
 sudo docker run --detach \
   --publish 4444:4444 \
@@ -72,5 +64,3 @@ sudo docker run --detach \
 selenium/standalone-chrome:3.141.59-yttrium
 sudo ufw allow 4444/tcp
 sudo systemctl restart ufw
-
-
